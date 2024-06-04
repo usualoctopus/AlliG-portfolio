@@ -108,7 +108,7 @@ hist(log(sums+1), breaks = 50) # include +1 so don't do log of 0)
 summary(log(sums+1))
 ```
 
-![miRNA_Histogram_logCPM.png](1ef1563c-5bb7-46d8-9cc0-c7f6748e27ca.png)
+![miRNA_Histogram_logCPM](assets/images/1ef1563c-5bb7-46d8-9cc0-c7f6748e27ca.png)
 
 The above illustrates the distribution of the unfiltered log-transformed mean expression values of genes across all samples (x-axis) and the number of genes that fall within each bin of log-transformed mean expression values (y-axis, Frequency) before any filtering is applied. This helps decide an appropriate filtering threshold.
 
@@ -119,7 +119,7 @@ hist(log(t(cpm.filtered[,-1]+1)))
 dim(cpm.filtered)
 ```
 
-![miRNA_Histogram_logCPMfiltered.png](5e1df371-b0d8-4dde-bc7f-a067ae73ffad.png)
+![miRNA_Histogram_logCPMfiltered.png](assets/images/miRNA_Histogram_logCPMfiltered.png)
 
 This shows the filtered log-transformed gene expression values of genes retained after filtering (>1.7 mean expression value) by the number of expression values across all genes and samples that fall within each bin. Filtering appears to clean up the distribution of gene expression by reducing low-expression genes. Note the heavy tail.
 
@@ -142,7 +142,7 @@ summary(pca)
 ```
 
 #### __PCA Plot, all samples__
-![miRNA_PCA.png](4a083b37-39ed-47e9-aeea-4fa05b61ee3b.png)
+![miRNA_PCA.png](assets/images/miRNA_PCA.png)
 
 ```
 # make a heat map to visualize variation in gene expression
@@ -174,7 +174,7 @@ names(cpm)
 ```
 
 #### __Heatmap of the top 50 most variable miRNA transcripts__
-![2a3314ba-3fa4-4efd-ab1f-2f912f05546b.png](48445e7c-460a-497c-9b17-cd50f197462b.png)
+![miRNA_Top50variance_heatmap.png](assets/images/miRNA_Top50variance_heatmap.png)
 This heatmap highlights the top 50 most variable genes after filtering low count & normalizing miR transcripts. Columns indicate samples and rows indicates genes. The colored column bar at the top (green = control, orange = PMDD) illustrates sample diagnosis. This heatmap reveals generally homogenous sample clusters, indicating that diagnostic condition appears to have a consistent effect on gene expression.
 
 
@@ -263,7 +263,7 @@ plotDendroAndColors(sampleTree2, traitColors,
 ```
 
 #### Heirarchical sample clustering with corresponding diagnoses
-![SampleDendro_TraitHeatmap.png](f24222b3-d884-47c2-95a8-4823e30e6fa4.png)
+![SampleDendro_TraitHeatmap.png](assets/images/output_4_6.png)
 The Height metric on the y-axis corresponds to the Euclidean distance, which is calculated using Unweighted Pair Group Method with Arithmetic Mean (UPGMA). That is, the distance between two clusters is defined as the average distance between all pairs of samples of samples in the two clusters. The samples/sample clusters at the lowest height are the most similar to each other, whereas those at the heighest are the least similar to each other.
 Note: I inexplicably renamed the samples.
 
@@ -291,7 +291,7 @@ text(sft$fitIndices[,1], sft$fitIndices[,5], labels=powers, cex=cex1,col="red")
 
 ```
 
-![SoftPowerThreshold12.png](3370c2bb-aff9-4152-93a7-aaff50d7d47f.png)
+![SoftPowerThreshold12.png](assets/images/SoftPowerThreshold12.png)
 The left panel shows the scale-free fit index (y-axis) as a function of the soft-thresholding power (x-axis). The right panel displays the mean connectivity (degree, y-axis) as a function of the soft-thresholding power (x-axis). Constructing a weighted gene network entails the choice of the soft thresholding power β to which co-expression similarity is raised to calculate adjacency (Zhang, Horvath; 2005). The soft thresholding power is chosen based on the criterion of approximate scale-free topology. For these data a power threshold of 4 was chosen, it is the lowest power for which the scale-free topology fit index reaches 0.90.
 For these data, a power threshold of 12 is best.
 
@@ -365,7 +365,7 @@ moduleLabels = match(moduleColors, colorOrder)-1;
 MEs = mergedMEs;
 ```
 
-![miRNA_DynamicHybrid_dendro.png](3e23947a-00e4-476b-b29d-e564e38bcb62.png)
+![miRNA_DynamicHybrid_dendro.png](assets/images/miRNA_DynamicHybrid_dendro.png)
 To minimize effects of noise and spurious associations, the adjacency is transformed into a signed Topological Overlap dissimilarity Matrix. Module eigengenes are calculated and clustered. Dynamic tree cut identifies modules whose expression profiles are very similar. It's ideal to merge such modules since their genes are highly co-expressed. To quantify co-expression similarity of entire modules, we calculate their eigengenes and cluster them based on their correlation. 
 
 The cut height is set to 0.25, corresponding to a correlation of 0.75, to merge. 
@@ -423,7 +423,7 @@ labeledHeatmap(Matrix = moduleTraitCor,
 moduleTraitPvalue[order(moduleTraitPvalue[,1]),1]
 ```
 
-![miRNA_ModTraitRelationship.png](1db3af70-5adf-4a91-ad8c-c0d80eccc6eb.png)
+![miRNA_ModTraitRelationship.png](assets/images/miRNA_ModTraitRelationship.png)
 Each row corresponds to a module eigengene, each column to diagnosis. Each cell contains the corresponding correlation coefficient (R value, top) with respect to diagnosis, and associated p-value (bottom, parentheses). The lightcyan and darkgrey modules are significantly different (p<0.05) compared to diagnosis.
 
 #### Determine Gene Significance (GS) and Module Membership (MM)
@@ -487,19 +487,19 @@ verboseScatterplot(geneModuleMembership[moduleGenes, column],
 
 ```
 
-![miRNA_lightcyan_MMvGS.png](98bfd7dc-39a2-4a3e-9544-71f912144b6d.png)
+![miRNA_lightcyan_MMvGS.png](assets/images/miRNA_lightcyan_MMvGS.png)
 lightcyan (55 genes)
 p-value = 0.019
 
-![miRNA_darkgrey_MMvGS.png](922a8861-c8d2-475a-8d52-f39307ae0ae9.png)
+![miRNA_darkgrey_MMvGS.png](assets/images/miRNA_darkgrey_MMvGS.png)
 darkgrey (19 genes)
 p-value = 0.048
 
-![miRNA_lightcyan_MMvGS_NoAbsValue.png](6c09ce08-0209-4951-b6bd-7b3f7e6f1446.png)
+![miRNA_lightcyan_MMvGS_NoAbsValue.png](assets/images/miRNA_lightcyan_MMvGS_NoAbsValue.png)
 lightcyan (55 genes)
 p-value = 0.019
 
-![miRNA_darkgrey_MMvGS_NoAbsValue.png](fc1a1819-8082-4fbf-ae16-88966ebc854d.png)
+![miRNA_darkgrey_MMvGS_NoAbsValue.png](assets/images/miRNA_darkgrey_MMvGS_NoAbsValue.png)
 darkgrey (19 genes)
 p-value = 0.048
 
@@ -553,7 +553,7 @@ diag(plotTOM) = NA;
 sizeGrWindow(9,9)
 TOMplot(plotTOM, geneTree, moduleColors, main = "Network heatmap plot, all genes")
 ```
-![Network_heatmap_allgenes.png](dbd0d9c8-560e-42ed-b7e2-a8a59e307fa2.png)
+![Network_heatmap_allgenes.png](assets/images/Network_heatmap_allgenes.png)
 
 Each row and column of the heatmap correspond to a single gene. The heatmap depicts topological overlaps (though can depict adjacencies), with light colors denoting low adjacency (overlap) and darker colors higher adjacency (overlap). In addition, the gene dendrograms and module colors are plotted along the top and left side of the heatmap.
 
@@ -587,7 +587,7 @@ plotEigengeneNetworks(MET, "Eigengene adjacency heatmap", marHeatmap = c(3,4,2,2
                       plotDendrograms = FALSE, xLabelsAngle = 90)
 ```
 
-![miRNA_dendro_heatmap_dx.png](c4f24faa-022e-4fd9-b124-a90d2a91d9a7.png)
+![miRNA_dendro_heatmap_dx.png](assets/images/miRNA_dendro_heatmap_dx.png)
 The dendrogram shows hierarchical clustering of the eigengenes in which the dissimilarity of eigengenes Ei, Ej is given by 1 − cor(Ei, Ej). The heatmap below shows the eigengene adjacency Aij = (1 + cor(Ei, Ej))/2. The purpose of these is to identify meta-modules, which are define as tight custers of modules (e.g., modules with a correlation of eigengenes of at least 0.5).
 
 ```
@@ -600,7 +600,7 @@ plot(cmd1, col=as.character(moduleColors), main="MDS plot",
 
 ```
 
-![MDS_plot.png](d04fe817-429c-4e5e-bcba-60e1cc072556.png)
+![MDS_plot.png](assets/images/MDS_plot.png)
 
 Multidimensional scaling takes a set of dissimilarities and returns a set of points such that the distances between the points are approximately equal to the dissimilarities (ordination). Modules here correspond to “fingers”, where intramodular hubs are in the finger tips.
 
@@ -619,7 +619,7 @@ hist(k)
 scaleFreePlot(k, main="Check scale free topology\n")
 ```
 
-![miRNA_kHist.png](752912b7-575e-487c-8082-b15aa83bf934.png)
+![miRNA_kHist.png](assets/images/miRNA_kHist.png)
 The left panel shows a histogram of network connectivities. The right panel is a log-log plot of the same
 histogram; the approximate linear relationship (high R^2 value) shows approximate scale free topology.
 
@@ -653,8 +653,8 @@ hist(as.numeric(IMConn.table$IMConn), breaks = 20, main = paste("Histogram of" ,
      xlab = "Intramodular Connectivity")
 ```
 
-![miRNA_lightcyan_hist.png](47b2ac92-2797-4980-ba05-3c5ffafb6caa.png)
-![miRNA_darkgrey_hist.png](5a9392da-545f-4e10-abd4-f18ac5a9ca3c.png)
+![miRNA_lightcyan_hist.png](assets/images/miRNA_lightcyan_hist.png)
+![miRNA_darkgrey_hist.png](assets/images/miRNA_darkgrey_hist.png)
 
 ```
 topIMConn <- IMConn.table[order(-as.numeric(IMConn.table$IMConn)),][1:30,]
@@ -686,7 +686,7 @@ par(mfrow=c(1,1))
 plot(hclustdatME, main="Clustering tree based of the module eigengenes")
 ```
 
-![HierClus_dendo_modEigs.png](1639b2fa-7a16-4400-b95f-6a76c1e1209e.png)
+![HierClus_dendo_modEigs.png](assets/images/HierClus_dendo_modEigs.png)
 
 Hierarchical clustering dendrograms of module eigengenes show a summary of each module by its eigengene, i.e., first principal component. The relatedness of the modules is reflected in low merge heights.  
 
@@ -695,7 +695,7 @@ Hierarchical clustering dendrograms of module eigengenes show a summary of each 
 sizeGrWindow(8,9)
 plotMEpairs(datME_dx)
 ```
-![miRNA_modGene_relationship.png](61cc010c-2072-4043-a2e8-6b6194ab5bba.png)
+![miRNA_modGene_relationship.png](assets/images/miRNA_modGene_relationship.png)
 Above is a pairwise scatterplot of module eigengenes of interest, the distribution of their values, and their pairwise correlation. On the diagonal are histograms of sample values for each eigengene. Above the diagonal is a pairwise scatterplot of the module eigengenes, below the diagonal is a pairwise correlation of the eigengene. The module eigengenes (first PCs) of the two different modules appears to be correlated (r = 0.58). 
 
 ```
@@ -729,8 +729,8 @@ barplot(ME, col=which.module, main="", cex.main=2,
 
 datME0 = as.data.frame(as.matrix(datME))
 ```
-![miRNA_lightcyan_heatmap_barplot.png](6147712e-89de-45fa-bc58-107edf6d8724.png)
-![miRNA_darkgrey_heatmap_barplot.png](5e368b3c-954b-49e3-a9d3-3bd31a97f240.png)
+![miRNA_lightcyan_heatmap_barplot.png](assets/images/miRNA_lightcyan_heatmap_barplot.png)
+![miRNA_darkgrey_heatmap_barplot.png](assets/images/miRNA_darkgrey_heatmap_barplot.png)
 
 The top row shows the heatmap of the module genes (rows) across the samples (columns). The lower row shows the corresponding module eigengene (ME) expression values (y-axis) versus the same samples. The ME can be considered the most representative gene expression profile of the module.
 
@@ -749,7 +749,7 @@ plotModuleSignificance(GeneSignificance,moduleColors, cex.names = 0.7, ylim = c(
 collectGarbage()
 ```
 
-![GS_Dx_across_mods_SignedHybrid.png](12df7760-172e-43e4-a40e-63441a5c7713.png)
+![GS_Dx_across_mods_SignedHybrid.png](assets/images/GS_Dx_across_mods_SignedHybrid.png)
 
 The top row shows the heatmap of the module genes (rows) across the samples (columns). The lower row shows the corresponding module eigengene (ME) expression values (y-axis) versus the same samples. The ME can be considered the most representative gene expression profile of the module.
 
@@ -818,7 +818,7 @@ for (i in c(1:length(colorlevels)))
 }
 ```
 
-![miRNA_darkgrey_lightcyan_ConnectivityvGS.png](e5dbc498-26a3-453b-8110-2f62e6a42b5c.png)
+![miRNA_darkgrey_lightcyan_ConnectivityvGS.png](assets/images/miRNA_darkgrey_lightcyan_ConnectivityvGS.png)
 Intramodular connectivity, or "degree", was calculated for each gene; i.e., the whole network connectivity and within-module connectivity were calculated. The above plots show approximately how significant the intramodular hub genes are to the module.
 
 
