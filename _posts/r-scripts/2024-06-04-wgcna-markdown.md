@@ -119,7 +119,7 @@ hist(log(t(cpm.filtered[,-1]+1)))
 dim(cpm.filtered)
 ```
 
-![miRNA_Histogram_logCPMfiltered.png](assets/images/miRNA_Histogram_logCPMfiltered.png)
+![miRNA_Histogram_logCPMfiltered](assets/images/miRNA_Histogram_logCPMfiltered.png)
 
 This shows the filtered log-transformed gene expression values of genes retained after filtering (>1.7 mean expression value) by the number of expression values across all genes and samples that fall within each bin. Filtering appears to clean up the distribution of gene expression by reducing low-expression genes. Note the heavy tail.
 
