@@ -108,7 +108,7 @@ hist(log(sums+1), breaks = 50) # include +1 so don't do log of 0)
 summary(log(sums+1))
 ```
 
-![miRNA_Histogram_logCPM](assets/images/1ef1563c-5bb7-46d8-9cc0-c7f6748e27ca.png)
+![miRNA_Histogram_logCPM](../../assets/images/1ef1563c-5bb7-46d8-9cc0-c7f6748e27ca.png)
 
 The above illustrates the distribution of the unfiltered log-transformed mean expression values of genes across all samples (x-axis) and the number of genes that fall within each bin of log-transformed mean expression values (y-axis, Frequency) before any filtering is applied. This helps decide an appropriate filtering threshold.
 
