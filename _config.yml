@@ -18,6 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+
 title: "AlliG Portfolio"
 email: alli.goff@gmail.com
 description: "This is a portfolio of (mostly) bioinformatics-related scripts."
